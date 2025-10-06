@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= Hero Section ================= -->
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6 hero-content">
+                <h1 class="display-4 fw-bold mb-3">
+                    Hi, I'm <span class="text-primary">Sakshyam Koirala</span>
+                </h1>
+                <h2 class="h4 text-muted mb-4 typing-animation"></h2>
+                <p class="lead mb-4">
+                    Passionate about <strong>Computer Science</strong>, 
+                    <strong>Cyber Security</strong>, <strong>Networking</strong>, 
+                    and <strong>Web Development</strong>. Building innovative solutions 
+                    and exploring the digital world.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary btn-lg me-3">Get In Touch</a>
+                                <a href="{% static 'files/resume.pdf' %}" 
+                class="btn btn-outline-primary btn-lg" 
+                download="Sakshyam_Koirala_Resume.pdf">
+                <i class="fas fa-download me-2"></i>Download Resume
+                </a>
+
+                </div>
+                {% comment %} <div class="mt-4">
+                    <button id="theme-toggle" class="btn btn-sm">Toggle Theme</button>
+                </div> {% endcomment %}
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="profile-placeholder">
+    <img src="static/images/profile.jpg" alt="Sakshyam Koirala" class="img-fluid rounded-circle shadow-lg" style="max-width: 300px;">
+    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= About Section ================= -->
+<section id="about" class="py-5 about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-center mb-4">
+                <div class="profile-placeholder-large">
+                    <img src="static/images/profile.jpg" alt="Sakshyam Koirala" class="img-fluid rounded-circle shadow-lg" style="max-width: 200px;">
+    
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="about-content">
+                    <h3 class="mb-4">Hello, I'm Sakshyam Koirala</h3>
+                    <p class="lead mb-4">
+                        I am a dedicated Computer Science student with a passion for technology, 
+                        cybersecurity, and web development. I enjoy exploring new technologies 
+                        and building innovative solutions that make a difference.
+                    </p>
+                    <p class="mb-4">
+                        My journey in technology started with curiosity about how things work 
+                        in the digital world. I specialize in web development using modern 
+                        frameworks, have a keen interest in cybersecurity practices, and 
+                        enjoy working with networking technologies.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="about-item">
+                                <i class="fas fa-graduation-cap text-primary me-2"></i>
+                                <strong>Education:</strong> Bachelor in Computer Science
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-item">
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                <strong>Location:</strong> Nepal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= Skills Section ================= -->
+<section id="skills" class="py-5 skills-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-12">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">Technologies and tools I work with</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="skill-category">
+                    <h4 class="skill-category-title">Design & Development</h4>
+                    <div class="skill-badges">
+                        <span class="skill-badge"><i class="fas fa-paint-brush me-2"></i>Graphic Designing</span>
+                        <span class="skill-badge"><i class="fab fa-python me-2"></i>Python</span>
+                        <span class="skill-badge"><i class="fab fa-django me-2"></i>Django</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="skill-category">
+                    <h4 class="skill-category-title">System & Networking</h4>
+                    <div class="skill-badges">
+                        <span class="skill-badge"><i class="fab fa-linux me-2"></i>Linux</span>
+                        <span class="skill-badge"><i class="fas fa-network-wired me-2"></i>Networking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= Projects Section ================= -->
+<section id="projects" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-12">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my recent work</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="{{ project.icon }} fa-3x text-white"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-title">{{ project.title }}</h5>
+                        <p class="project-description">{{ project.description }}</p>
+                        <div class="project-tech">
+                            {% for tech in project.technologies %}
+                            <span class="tech-badge">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="project-links">
+                            <a href="{{ project.github }}" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-github me-1"></i>GitHub
+                            </a>
+                            <a href="{{ project.demo }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ================= Contact Section ================= -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-12">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's connect and discuss opportunities</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-form-container">
+                    <form method="post" action="{% url 'contact' %}" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= Footer ================= -->
+{% comment %} <footer class="py-4 text-center">
+    <p>&copy; {{ current_year }} Designed by Sakshyam Koirala</p>
+</footer> {% endcomment %}
+
+<!-- ================= Scripts ================= -->
+<script>
+    // Theme toggle
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+        document.body.dataset.bsTheme = document.body.dataset.bsTheme === "dark" ? "light" : "dark";
+    });
+
+    // Typing animation
+    const phrases = ["Computer Science Student", "Cyber Security Enthusiast", "Network Engineer", "Web Developer"];
+    let i = 0, j = 0, currentPhrase = "", isDeleting = false;
+
+    function type() {
+        const typingEl = document.querySelector(".typing-animation");
+        if (!typingEl) return;
+
+        if (i < phrases.length) {
+            if (!isDeleting && j <= phrases[i].length) {
+                currentPhrase = phrases[i].substring(0, j++);
+                typingEl.textContent = currentPhrase;
+            } else if (isDeleting && j >= 0) {
+                currentPhrase = phrases[i].substring(0, j--);
+                typingEl.textContent = currentPhrase;
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) i = (i + 1) % phrases.length;
+                setTimeout(type, 500);
+                return;
+            }
+        }
+        setTimeout(type, isDeleting ? 50 : 150);
+    }
+    type();
+</script>
+
+{% endblock %}
